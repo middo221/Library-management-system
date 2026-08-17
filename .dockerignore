@@ -1,0 +1,22 @@
+# Keep the build context small and free of host-specific state.
+**/.venv/
+**/venv/
+**/__pycache__/
+**/*.py[cod]
+**/node_modules/
+**/dist/
+**/.pytest_cache/
+**/.ruff_cache/
+**/htmlcov/
+**/.coverage
+**/db.sqlite3
+**/staticfiles/
+**/frontend_dist/
+**/.env
+**/.env.*
+!**/.env.example
+.git/
+.github/
+docs/
+specs/
+*.md

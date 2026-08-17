@@ -1,0 +1,42 @@
+[project]
+name = "library-backend"
+version = "1.0.0"
+description = "Library management system — Django REST backend with a DTO boundary."
+requires-python = ">=3.12"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.settings.test"
+python_files = ["test_*.py", "tests.py"]
+testpaths = ["domains", "testing"]
+addopts = "-ra --strict-markers"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.coverage.run]
+source = ["domains"]
+omit = ["*/migrations/*", "*/tests/*", "*/management/*"]
+
+[tool.coverage.report]
+skip_covered = false
+show_missing = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = [".venv", "migrations", "staticfiles"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "UP", "B", "C4", "DJ", "SIM", "RUF"]
+ignore = [
+    "RUF012", # Django class attributes are conventionally mutable
+    "N818",   # domain exceptions read better without an Error suffix everywhere
+    "B008",   # DRF/Django idioms call in argument defaults
+    "RUF002", # prose in docstrings uses real dashes and quotes
+    "RUF003",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"*/settings/*.py" = ["F403", "F405"]
+"*/tests/*.py" = ["S101"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["domains", "config", "testing"]

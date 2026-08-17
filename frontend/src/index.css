@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+
+  /* Everything that isn't the stamp stays quiet — but focus is never quiet. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-shelf ring-offset-2 ring-offset-paper;
+  }
+
+  ::selection {
+    @apply bg-brass/30;
+  }
+}
+
+@layer components {
+  .field-label {
+    @apply block text-xs font-semibold uppercase tracking-[0.12em] text-ink/60;
+  }
+
+  .field-input {
+    @apply mt-1.5 w-full rounded-sm border border-rule bg-white px-3 py-2.5 text-ink
+           placeholder:text-ink/35 focus:border-shelf focus:outline-none focus:ring-1
+           focus:ring-shelf disabled:bg-rule/20 disabled:text-ink/50;
+  }
+
+  .field-error {
+    @apply mt-1.5 text-sm text-stamp;
+  }
+
+  /* Call numbers, barcodes, ISBNs, membership numbers: catalogue data, and it should look
+     like catalogue data wherever it appears. */
+  .catalogue-data {
+    @apply font-mono text-[0.8125rem] tracking-tight text-ink/70;
+  }
+}
+
+@layer utilities {
+  .rule-divide > * + * {
+    @apply border-t border-rule;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

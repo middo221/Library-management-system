@@ -1,0 +1,100 @@
+# ---------------------------------------------------------------------------- secrets ---
+# Everything environment-specific stays out of history. .env.example is the committed shape.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ----------------------------------------------------------------------------- python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+/backend/staticfiles/
+/backend/media/
+/backend/frontend_dist/
+
+# Testing and coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tox/
+.nox/
+.hypothesis/
+
+# Linters and type checkers
+.ruff_cache/
+.mypy_cache/
+.dmypy.json
+
+# ------------------------------------------------------------------------------- node ---
+node_modules/
+/frontend/dist/
+/frontend/dist-ssr/
+.vite/
+*.local
+
+# npm / yarn / pnpm debug output
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Playwright
+/frontend/test-results/
+/frontend/playwright-report/
+/frontend/blob-report/
+/frontend/.playwright/
+
+# ------------------------------------------------------------------------------ tools ---
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# ---------------------------------------------------------------------------- os cruft ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --------------------------------------------------------------------------- generated ---
+# Regenerated from the Django schema by `make schema`; committed deliberately so the
+# frontend types can be built without a running backend. Remove the negation to untrack it.
+!/frontend/openapi.json
