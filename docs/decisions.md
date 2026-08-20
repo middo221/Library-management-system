@@ -73,8 +73,10 @@ requests) is more code for the same behaviour. Verified in `src/api/client.test.
 The root `Dockerfile` builds the React app in a Node stage and copies `dist/` into the Django
 image, where WhiteNoise serves the hashed assets and a catch-all view returns `index.html` for
 client routes. Same origin means no CORS configuration in production and no second web server
-to keep in step. `docker-compose.dev.yml` runs them apart, with Vite's dev proxy standing in
-for the same-origin arrangement.
+to keep in step. In development the two run apart — `manage.py runserver` and `npm run dev` —
+with Vite's dev proxy forwarding `/api` so the same-origin arrangement holds there too. A
+container stack that hot-reloaded both was built and then dropped: it duplicated the native
+workflow without being faster, and the two extra Dockerfiles it needed were pure upkeep.
 
 ## Membership numbers are labels, not keys
 

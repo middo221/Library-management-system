@@ -67,12 +67,6 @@ cd frontend && npm run dev
 The frontend is then at <http://localhost:5173> and proxies `/api` to the backend. On
 macOS/Linux use `.venv/bin/python` instead of `.venv/Scripts/python`.
 
-There is also a hot-reloading container stack:
-
-```bash
-docker compose -f docker-compose.dev.yml up --build
-```
-
 ---
 
 ## Architecture
@@ -81,7 +75,6 @@ docker compose -f docker-compose.dev.yml up --build
 library-management-system/
 ├── Dockerfile                 # builds the SPA, then the API image that serves both
 ├── docker-compose.yml         # app + postgres
-├── docker-compose.dev.yml     # postgres + runserver + vite, with bind mounts
 ├── backend/
 │   ├── config/settings/       # base / local / production / test
 │   ├── domains/               # the Django apps, one per bounded area
@@ -99,7 +92,7 @@ library-management-system/
 │       ├── components/        # shared UI primitives, app shell, error pages
 │       ├── routes/            # the route table, and nothing else
 │       ├── hooks/  lib/
-└── docs/                      # decisions.md, api-errors.md
+└── docs/                      # conventions.md, decisions.md, api-errors.md
 ```
 
 Each backend domain has the same shape — `models.py` (entities), `services.py` (writes and
@@ -116,7 +109,8 @@ URL → View → Request DTO → Service → Model/QuerySet → Response DTO →
 Views never touch the ORM. Services never import DRF — they raise `DomainError` subclasses,
 and one exception handler turns those into the single error envelope. DTOs are plain
 `serializers.Serializer` classes, never `ModelSerializer`, so the wire format is chosen rather
-than inherited. `CLAUDE.md` has the full set of conventions.
+than inherited. [docs/conventions.md](docs/conventions.md) has the full set of rules — layering,
+DTO naming, error codes, the circulation policy, and the definition of done.
 
 ### The one modelling decision that matters
 

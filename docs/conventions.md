@@ -1,6 +1,7 @@
 # Conventions
 
-Copied from `specs/library-management-implementation-plan.md` §1 so it stays in context.
+The rules this codebase is held to. If a change breaks one of these, either the change is
+wrong or this document is — resolve it before merging, don't leave both true.
 
 ## Layering
 
